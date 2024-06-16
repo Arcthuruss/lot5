@@ -18,49 +18,24 @@ public class Client {
     private String numero;
     private final ArrayList<Reservation> mesReservation;
 
-    public Client(String nom, String prenom, String adresse, String tel, String mail, String numero, Reservation reservation) throws InvalidFormatException{
+    public Client(String nom, String prenom, String adresse, String tel, String mail, String numero, Reservation reservation) {
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
-
-        try {
-            int temp = Integer.parseInt(tel);
-            if (tel.length() == 10) this.tel = tel;
-            else throw new InvalidPhoneFormatException();
-        } catch (NumberFormatException e) {
-            System.out.println("Numero de telephone invalide");
-        }
-
-        Matcher matcher = EMAIL_VALIDATION_REGEX.matcher(mail);
-        if (matcher.find()) this.mail = mail;
-        else throw new InvalidMailFormatException();
-
+        this.tel = tel;
+        this.mail = mail;
         this.numero = numero;
 
-        if (reservation == null) throw new IllegalArgumentException();
-        else {
-            this.mesReservation = new ArrayList<>();
-            this.mesReservation.add(reservation);
-        }
+        this.mesReservation = new ArrayList<>();
+        this.mesReservation.add(reservation);
     }
 
-    public Client(String nom, String prenom, String adresse, String tel, String mail, String numero, ArrayList<Reservation> mesReservation) throws InvalidFormatException, MinimalSizeException {
+    public Client(String nom, String prenom, String adresse, String tel, String mail, String numero, ArrayList<Reservation> mesReservation) throws MinimalSizeException {
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
-
-        try {
-            int temp = Integer.parseInt(tel);
-            if (tel.length() == 10) this.tel = tel;
-            else throw new InvalidPhoneFormatException();
-        } catch (NumberFormatException e) {
-            System.out.println("Numero de telephone invalide");
-        }
-
-        Matcher matcher = EMAIL_VALIDATION_REGEX.matcher(mail);
-        if (matcher.find()) this.mail = mail;
-        else throw new InvalidMailFormatException();
-
+        this.tel = tel;
+        this.mail = mail;
         this.numero = numero;
 
         if (mesReservation.isEmpty()) throw new MinimalSizeException("Un client a au moins une reservation");
@@ -158,6 +133,12 @@ public class Client {
         if (reservation == null) throw new IllegalArgumentException("Cette reservation n'existe pas");
         else if (this.contient(reservation)) throw new IllegalArgumentException("Le client a deja fait cette reservation");
         else addReservation(reservation);
+    }
+
+    public void supprimerReservation(Reservation reservation) {
+        if (reservation == null) throw new IllegalArgumentException("Cette reservation n'existe pas");
+        else if (!this.contient(reservation)) throw new IllegalArgumentException("Le client n'a pas fait cette reservation");
+        else removeReservatoin(reservation);
     }
 
     //utilitary
