@@ -1,4 +1,4 @@
-package xyz.nahidwin.lot5.view;
+package xyz.nahidwin.lot5.controler;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

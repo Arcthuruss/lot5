@@ -3,13 +3,11 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xyz.nahidwin.lot5.controler.CtrlDetail">
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
          <children>
@@ -18,9 +16,9 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
                <children>
-                  <Label text="NOM" />
-                  <Label text="Prénom" />
-                  <Label text="Ville" />
+                  <Label fx:id="txtNom" text="NOM" />
+                  <Label fx:id="txtPrenom" text="Prénom" />
+                  <Label fx:id="txtVille" text="Ville" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="75.0" prefWidth="320.0" spacing="5.0">
@@ -28,13 +26,13 @@
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </padding>
                <children>
-                  <Label text="Etat du Payement" />
+                  <Label fx:id="txtEtatPayement" text="Etat du Payement" />
                </children>
             </VBox>
             <VBox alignment="TOP_CENTER" prefHeight="75.0" prefWidth="140.0" spacing="5.0">
                <children>
-                  <Label text="Date réservation" />
-                  <Label text="Date représentation" />
+                  <Label fx:id="txtDateReservation" text="Date réservation" />
+                  <Label fx:id="txtDateRepresentation" text="Date représentation" />
                </children>
                <padding>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -44,56 +42,22 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="275.0" prefWidth="200.0" spacing="20.0">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-width: 2;">
+            <ListView fx:id="listeBillet" prefHeight="200.0" prefWidth="100.0" style="-fx-border-color: black; -fx-border-width: 2;" />
+            <VBox alignment="CENTER" prefHeight="250.0" prefWidth="236.0" style="-fx-border-color: black; -fx-border-width: 2;">
                <children>
-                  <HBox alignment="CENTER" prefHeight="58.0" prefWidth="96.0" style="-fx-border-color: black;">
-                     <children>
-                        <Label text="Billet 1" />
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="54.0" prefWidth="96.0" style="-fx-border-color: black;">
-                     <children>
-                        <Label text="Billet 2" />
-                     </children>
-                  </HBox>
-               </children>
-            </VBox>
-            <VBox prefHeight="250.0" prefWidth="236.0" style="-fx-border-color: black; -fx-border-width: 2;">
-               <children>
-                  <ScrollPane prefHeight="200.0" prefWidth="200.0">
-                    <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="247.0" prefWidth="216.0">
-                           <children>
-                              <VBox prefHeight="247.0" prefWidth="216.0">
-                                 <children>
-                                    <HBox alignment="CENTER" prefHeight="55.0" prefWidth="216.0" style="-fx-border-color: black;">
-                                       <children>
-                                          <Label text="CA Billet 1" />
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER" prefHeight="55.0" prefWidth="216.0" style="-fx-border-color: black;">
-                                       <children>
-                                          <Label text="CA Billet 2" />
-                                       </children>
-                                    </HBox>
-                                 </children>
-                              </VBox>
-                           </children>
-                        </AnchorPane>
-                    </content>
-                  </ScrollPane>
-                  <HBox alignment="CENTER" prefHeight="47.0" prefWidth="232.0">
-                     <children>
-                        <Label text="Total CA Réservation" />
-                     </children>
-                  </HBox>
+                  <ListView fx:id="listeCA" prefHeight="200.0" prefWidth="200.0" />
+                  <Label fx:id="txtTotalCA" alignment="CENTER" text="Total CA Réservation">
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding>
+                  </Label>
                </children>
             </VBox>
          </children>
       </HBox>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" text="Supprimer la réservation" />
+            <Button mnemonicParsing="false" onAction="#supprimerReservation" text="Supprimer la réservation" />
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
