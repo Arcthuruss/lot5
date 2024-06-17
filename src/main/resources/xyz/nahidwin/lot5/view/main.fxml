@@ -29,10 +29,10 @@
             <VBox>
                <children>
                   <Label text="Ville" />
-                  <TextField fx:id="tfVille" prefWidth="200.0" />
+                  <TextField fx:id="tfVille" prefWidth="275.0" />
                </children>
             </VBox>
-            <Button fx:id="bnRechercher" mnemonicParsing="false">
+            <Button fx:id="bnRechercher" mnemonicParsing="false" onAction="#clicRechercher">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -44,10 +44,10 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </HBox>
-      <HBox alignment="CENTER_LEFT" spacing="10.0">
+      <HBox alignment="CENTER_RIGHT" spacing="10.0">
          <children>
-            <CheckBox fx:id="cbSelection" mnemonicParsing="false" />
-            <Button fx:id="bnSupprimer" mnemonicParsing="false">
+            <CheckBox fx:id="cbSelection" mnemonicParsing="false" onAction="#checkAll" />
+            <Button fx:id="bnSupprimer" mnemonicParsing="false" onAction="#supprimerReservations">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -57,16 +57,12 @@
             </Button>
          </children>
          <padding>
-            <Insets left="12.0" />
+            <Insets right="10.0" />
          </padding>
       </HBox>
-      <ScrollPane fitToWidth="true" minHeight="100.0" minWidth="-Infinity">
+      <ScrollPane>
          <content>
-            <VBox fx:id="listResa" spacing="2.0">
-               <padding>
-                  <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-               </padding>
-            </VBox>
+            <VBox fx:id="listResa" />
          </content>
       </ScrollPane>
    </children>
