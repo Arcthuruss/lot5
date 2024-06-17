@@ -32,4 +32,7 @@ public class FenMain extends Stage {
         public void ajouterReservation(Reservation reservation){
                 ctrl.ajouterReservation(reservation);
         }
+        public void supprimerReservation(Reservation r) {
+                ctrl.supprimerReservation(r);
+        }
 }

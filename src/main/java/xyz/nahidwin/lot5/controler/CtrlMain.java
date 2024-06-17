@@ -18,7 +18,7 @@ public class CtrlMain {
         @FXML private CheckBox cbSelection;
         @FXML private VBox listResa;
 
-        private ArrayList<Integer> indexSelected = new ArrayList<Integer>();
+        private ArrayList<Integer> indexSelected = new ArrayList<>();
 
         public void ajouterReservation(Reservation reservation){
                 try{
@@ -41,7 +41,7 @@ public class CtrlMain {
                         }
                 }
 
-                if (listResa.getChildren().size() <= 0){
+                if (listResa.getChildren().isEmpty()){
                         cbSelection.setSelected(false);
                 }
         }
@@ -56,9 +56,15 @@ public class CtrlMain {
                 listResa.getChildren().remove(index);
         }
 
+        public void supprimerReservation(Reservation r) {
+                int i=0;
+                while (r != ((FenBillet) listResa.getChildren().get(i)).getReservation()) i++;
+                listResa.getChildren().remove(i);
+        }
+
         public void clicRechercher(){
-                String nom = tfNom.getText().toLowerCase();
-                String ville = tfVille.getText().toLowerCase();
+                String nom = tfNom.getText();
+                String ville = tfVille.getText();
 
                 for (int i = 0; i < listResa.getChildren().size(); i++) {
                         listResa.getChildren().get(i).setVisible(true);
@@ -67,12 +73,19 @@ public class CtrlMain {
                 }
 
                 for (int i = 0; i < listResa.getChildren().size(); i++) {
-                        if (!(((FenBillet) listResa.getChildren().get(i)).getReservation().getClient().getNom().toLowerCase().startsWith(nom)) || !(((FenBillet) listResa.getChildren().get(i)).getReservation().getClient().getAdresse().toLowerCase().startsWith(ville))){
+                        if (!(((FenBillet) listResa.getChildren().get(i)).getReservation().getClient().getNom().toUpperCase().contains(nom.toUpperCase()))
+                                || !(((FenBillet) listResa.getChildren().get(i)).getReservation().getClient().getAdresse().toUpperCase().contains(ville.toUpperCase()))) {
+
                                 listResa.getChildren().get(i).setVisible(false);
                                 listResa.getChildren().get(i).setManaged(false);
-                        } else{
-                                ((FenBillet) listResa.getChildren().get(i)).nameToBold(nom);
-                                ((FenBillet) listResa.getChildren().get(i)).cityToBold(ville);
+
+                        } else {
+                                if (!nom.isEmpty()) {
+                                        ((FenBillet) listResa.getChildren().get(i)).nameToBold(nom.toUpperCase());
+                                }
+                                if (!ville.isEmpty()) {
+                                        ((FenBillet) listResa.getChildren().get(i)).cityToBold(ville.toUpperCase());
+                                }
                         }
                 }
         }

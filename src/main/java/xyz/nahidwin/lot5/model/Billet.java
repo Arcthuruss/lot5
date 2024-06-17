@@ -5,10 +5,16 @@ public class Billet {
 
     private Reservation reservation;
     // private Fauteuil fauteuil;
-    // private Tarification tarif;
+    private Tarification tarification;
+    private double pleinTarif = 60;
 
-    public Billet(String numero){
+    public Billet(String numero, Tarification tarification){
         this.numero=numero;
+        this.tarification =tarification;
+    }
+
+    public double getPrix() {
+        return pleinTarif - (pleinTarif * tarification.getRedutionStatic()/100);
     }
 
     // Reservation

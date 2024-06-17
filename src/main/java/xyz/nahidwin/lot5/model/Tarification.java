@@ -3,11 +3,21 @@ package xyz.nahidwin.lot5.model;
 import java.util.ArrayList;
 
 public abstract class Tarification {
+    private double reductionStatic;
     private final ArrayList<Reservation> reservations;
 
-    public Tarification() {
+    public Tarification(double reductionStatic) {
+        this.reductionStatic = reductionStatic;
         this.reservations = new ArrayList<>();
     };
+
+    public void setReductionStatic(double tarifReduit) {
+        this.reductionStatic = tarifReduit;
+    }
+
+    public double getRedutionStatic() {
+        return reductionStatic;
+    }
 
     public abstract String toString();
 

@@ -33,4 +33,8 @@ public class FenDetail extends Stage {
         ctrl.chargerReservation(r);
     }
 
+    public void clear() {
+        ctrl.clear();
+    }
+
 }

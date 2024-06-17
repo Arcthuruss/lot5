@@ -9,6 +9,7 @@ import xyz.nahidwin.lot5.Main;
 import xyz.nahidwin.lot5.model.Reservation;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
+import java.lang.Math;
 
 public class CtrlBillet {
     @FXML CheckBox cbSelection;
@@ -55,25 +56,37 @@ public class CtrlBillet {
     }
 
     public void nameToBold(String text){
-        Text start = new Text(text);
-        start.setStyle("-fx-font-weight: bold");
+        String nom = reservation.getClient().getNom();
+        int index = nom.toUpperCase().indexOf(text);
 
-        Text end = new Text(reservation.getClient().getNom().substring(text.length()));
-        end.setStyle("-fx-font-weight: regular");
+        Text start = new Text(nom.substring(0,index));
+        start.setStyle("-fx-font-weight:regular;");
+
+        Text middle = new Text(nom.substring(index,Math.min(index+text.length(),nom.length())));
+        middle.setStyle("-fx-font-weight:bold;");
+
+        Text end = new Text(nom.substring(index+text.length()));
+        end.setStyle("-fx-font-weight:regular;");
 
         txtNom.getChildren().clear();
-        txtNom.getChildren().addAll(start, end);
+        txtNom.getChildren().addAll(start, middle, end);
     }
 
     public void cityToBold(String text){
-        Text start = new Text(text);
-        start.setStyle("-fx-font-weight: bold");
+        String city = reservation.getClient().getAdresse();
+        int index = city.toUpperCase().indexOf(text);
 
-        Text end = new Text(reservation.getClient().getAdresse().substring(text.length()));
+        Text start = new Text(city.substring(0,index));
+        start.setStyle("-fx-font-weight: regular");
+
+        Text middle = new Text(city.substring(index,Math.min(index+text.length(),city.length())));
+        middle.setStyle("-fx-font-weight: bold;");
+
+        Text end = new Text(city.substring(index+text.length()));
         end.setStyle("-fx-font-weight: regular");
 
         txtVille.getChildren().clear();
-        txtVille.getChildren().addAll(start, end);
+        txtVille.getChildren().addAll(start, middle, end);
     }
 
     public void clearBold(){

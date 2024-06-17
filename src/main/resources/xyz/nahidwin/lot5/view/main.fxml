@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xyz.nahidwin.lot5.controler.CtrlMain">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="5.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="xyz.nahidwin.lot5.controler.CtrlMain">
    <children>
       <HBox alignment="BOTTOM_LEFT" spacing="6.0">
          <children>
@@ -32,7 +32,7 @@
                   <TextField fx:id="tfVille" prefWidth="275.0" />
                </children>
             </VBox>
-            <Button fx:id="bnRechercher" mnemonicParsing="false" onAction="#clicRechercher">
+            <Button fx:id="bnRechercher" defaultButton="true" mnemonicParsing="false" onAction="#clicRechercher">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -44,7 +44,7 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </HBox>
-      <HBox alignment="CENTER_RIGHT" spacing="10.0">
+      <HBox alignment="CENTER_LEFT" spacing="10.0">
          <children>
             <CheckBox fx:id="cbSelection" mnemonicParsing="false" onAction="#checkAll" />
             <Button fx:id="bnSupprimer" mnemonicParsing="false" onAction="#supprimerReservations">
@@ -57,12 +57,12 @@
             </Button>
          </children>
          <padding>
-            <Insets right="10.0" />
+            <Insets left="17.0" />
          </padding>
       </HBox>
-      <ScrollPane>
+      <ScrollPane fitToWidth="true" vbarPolicy="ALWAYS">
          <content>
-            <VBox fx:id="listResa" />
+            <VBox fx:id="listResa" alignment="CENTER" />
          </content>
       </ScrollPane>
    </children>
