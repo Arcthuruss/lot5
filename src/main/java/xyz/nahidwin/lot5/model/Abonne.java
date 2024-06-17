@@ -1,9 +1,9 @@
 package xyz.nahidwin.lot5.model;
 
-public class Abonné extends Tarification{
+public class Abonne extends Tarification{
     public double tarifReduit;
 
-    public Abonné(double tarifReduit) {
+    public Abonne(double tarifReduit) {
         this.tarifReduit = tarifReduit;
     }
 
