@@ -6,11 +6,14 @@ public class Facture {
     private String numero;
     private double montantTTC;
     private static final double TauxTVA = 0.2;
+    private Paiement paiement;
 
-    public Facture(String numero, double montantTTC) {
+    public Facture(String numero, double montantTTC, boolean isPaye) {
         this.numero = numero;
-        if (montantTTC < 0) this.montantTTC = montantTTC;
+        if (montantTTC >= 0) this.montantTTC = montantTTC;
         else throw new IllegalArgumentException("Le montant du billet ne peut pas etre negatif");
+
+        paiement = new Liquide(isPaye); // Pour cause de flemme, on considère que le paiement est fait en liquide
     }
 
     public String getNumero() {
@@ -27,6 +30,14 @@ public class Facture {
 
     public void setMontantTTC(double montantTTC) {
         this.montantTTC = montantTTC;
+    }
+
+    public Paiement getPaiement() {
+        return paiement;
+    }
+
+    public void setPaiement(Paiement paiement) {
+        this.paiement = paiement;
     }
 
     @Override
