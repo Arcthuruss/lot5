@@ -1,6 +1,8 @@
 package xyz.nahidwin.lot5;
 
 import javafx.application.Application;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import xyz.nahidwin.lot5.model.*;
 import xyz.nahidwin.lot5.view.*;
@@ -80,7 +82,13 @@ public class Main extends Application {
         }
 
         public static void supprimerReservation(Reservation r) {
-                fenDetail.close();
-                fenMain.supprimerReservation(r);
+                Alert confirm = new Alert(Alert.AlertType.CONFIRMATION, "Êtes-vous sûr de supprimer cette réservation ?");
+                confirm.setTitle("Confirmation de suppression");
+                confirm.showAndWait().ifPresent(response -> {
+                        if (response == ButtonType.OK){
+                                fenDetail.close();
+                                fenMain.supprimerReservation(r);
+                        }
+                });
         }
 }

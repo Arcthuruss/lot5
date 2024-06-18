@@ -32,18 +32,35 @@ public class CtrlMain {
         }
 
         @FXML public void supprimerReservations(){
-                int i=0;
-                while (i<listResa.getChildren().size()){
-                        if (((FenBillet) listResa.getChildren().get(i)).isChecked()) {
-                                listResa.getChildren().remove(i);
-                        } else{
-                                i++;
-                        }
-                }
 
-                if (listResa.getChildren().isEmpty()){
-                        cbSelection.setSelected(false);
+                int count=0;
+                int j=0;
+                while (j<listResa.getChildren().size()){
+                        if (((FenBillet) listResa.getChildren().get(j)).isChecked()) {
+                                count++;
+                        }
+                        j++;
                 }
+                if (count==0) return;
+
+                Alert confirm = new Alert(Alert.AlertType.CONFIRMATION, "Êtes-vous sûr de supprimer " + count + " réservation(s) ?");
+                confirm.setTitle("Confirmation de suppression");
+                confirm.showAndWait().ifPresent(response -> {
+                        if (response == ButtonType.OK){
+                                int i=0;
+                                while (i<listResa.getChildren().size()){
+                                        if (((FenBillet) listResa.getChildren().get(i)).isChecked()) {
+                                                listResa.getChildren().remove(i);
+                                        } else{
+                                                i++;
+                                        }
+                                }
+
+                                if (listResa.getChildren().isEmpty()){
+                                        cbSelection.setSelected(false);
+                                }
+                        }
+                });
         }
 
         @FXML public void checkAll(){
